@@ -20,5 +20,12 @@ COPY . .
 # 给脚本添加执行权限
 RUN chmod +x plugin_repackaging.sh
 
+# 设置默认环境变量
+ENV PLATFORM="manylinux_2_17_x86_64" \
+    SOURCE_TYPE="market" \
+    PLUGIN_AUTHOR="antv" \
+    PLUGIN_NAME="visualization" \
+    PLUGIN_VERSION="0.1.7"
+
 # 设置默认命令
-CMD ["./plugin_repackaging.sh", "-p", "manylinux_2_17_x86_64", "market", "antv", "visualization", "0.1.7"] 
+CMD ./plugin_repackaging.sh -p ${PLATFORM} ${SOURCE_TYPE} ${PLUGIN_AUTHOR} ${PLUGIN_NAME} ${PLUGIN_VERSION}
